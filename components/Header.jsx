@@ -22,9 +22,9 @@ const Header = () => {
         <p className="mt-4 max-w-[740px]  m-auto sm:text-base">
           Get inspired by latest blogs about web technologies
         </p>
-        <form action="" className="flex justify-between max-w-[500px] scale-75 sm:scale-75 mx-auto mt-10 border border-black shadow-[-7px_7px_0px]">
-          <input type="email" className="pl-4 text-2xl p-2 border-none outline-none" placeholder="Enter your email" />
-          <button type="submit" className="border-1 text-xl border-black p-2 rounded-md sm:px-8  bg-slate-600 text-white m-1 active:bg-gray-700">Subscribe</button>
+        <form action="" className="flex justify-between max-w-[600px] w-full scale-75 sm:scale-100 mx-auto mt-10 border border-slate-400 shadow-[-7px_7px_0px] rounded-lg outline-none">
+          <input type="email" className="pl-4 text-2xl p-2 rounded-lg border-none outline-none" placeholder="Enter your email" />
+          <button type="submit" className="border-1 text-xl border-black px-2 rounded-md sm:px-8  bg-slate-600 text-white  active:bg-gray-700">Subscribe</button>
         </form>
       </div>
     </div>
