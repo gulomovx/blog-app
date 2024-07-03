@@ -1,40 +1,44 @@
 import { ConnectDB } from "@/lib/config/db";
 import BlogModel from "@/lib/models/BlogModal";
-import { writeFile } from 'fs/promises';
+import {writeFile} from 'fs/promises'
 const { NextResponse } = require("next/server");
+// import { NextResponse } from "next/server";
+import { Buffer } from "buffer";
 
 const LoadDB = async () => {
-    await ConnectDB();
-};
+    await ConnectDB()
+}
 
-LoadDB();
+LoadDB()
+
+
 
 export async function GET(request) {
     console.log('blog get hits');
-    return NextResponse.json({ msg: 'api working' });
+    return NextResponse.json({msg: 'api working'})
 }
 
 export async function POST(request) {
-    const formData = await request.formData();
-    const timeStamp = Date.now();
-    const image = formData.get('image');
-    const imageByteData = await image.arrayBuffer();
-    const buffer = Buffer.from(imageByteData);
-    const path = `./public/${timeStamp}_${image.name}`;
-    await writeFile(path, buffer);
-    const imgUrl = `/${timeStamp}_${image.name}`;
+    const formData = await request.formData()
+    const timeStamp = Date.now()
+    const image = formData.get('image')
+    const imageByteData = await image.arrayBuffer()
+    const buffer = Buffer.from(imageByteData)
+    const path=`./public/${timeStamp}_${image.name}`
+    await writeFile(path,buffer)
+    const imgUrl = `/${timeStamp}_${image.name}`
     console.log(imgUrl);
 
     const blogData = {
-        title: formData.get('title'),
-        description: formData.get('description'),
-        category: formData.get('category'),
-        author: formData.get('author'),
-        image: imgUrl,
-        authorImg: formData.get('authorImg')
-    };
-    await BlogModel.create(blogData);
+        title: `${formData.get('title')}`,
+        description: `${formData.get('description')}`,
+        category: `${formData.get('category')}`,
+        author: `${formData.get('author')}`,
+        image: `${imgUrl}`,
+        authorImg:`${formData.get('authorImg')}`
+    }
+    await BlogModel.create(blogData)
     console.log('blog saved');
 
-    return NextResponse.json({ success: true, msg: 'blog added' });
+    return NextResponse.json({imgUrl})
 }
