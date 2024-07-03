@@ -1,11 +1,15 @@
 import { assets, blog_data } from '@/Assets/assets'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-const BlogItem = ({title, description, category, image}) => {
+const BlogItem = ({title, description, category, image, id}) => {
   return (
       <div className='max-w-[330px]  sm:max-w-[300px] bg-white border border-slate-700 rounded-lg hover:overflow-hidden  transition-all '>
+          <Link href={`/blogs/${id}`}>
           <Image className='hover:transform transition-all duration-300 object-cover rounded-lg ease-out hover:scale-110  cursor-pointer' src={image} alt='img' width={400} height={400} />
+              
+          </Link>
           <p className="text-2xl ml-5 mt-4 p-1 inline-block  text-slate-9
           00 font-semibold ">{category}</p>
           <div className="p-5">
